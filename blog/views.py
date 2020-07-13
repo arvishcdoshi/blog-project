@@ -14,6 +14,13 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})    
 
+def post_delete(request,pk):
+    print('going')
+    post = Post.objects.get(pk=pk)  
+    post.delete()
+    return HttpResponse('Deleted!!!')
+    
+
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
